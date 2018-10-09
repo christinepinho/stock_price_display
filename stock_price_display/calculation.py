@@ -28,7 +28,8 @@ def calculate_average_open_close(open_close_df):
 
 def calculate_max_profit(profit_df):
     """Given a dataframe of tickers, dates, and high/low prices per day,
-    calculate the max profit each security made in a single day
+    calculate which day in the data set had the max profit between that day's
+    low and high
     """
     profit_df['profit'] = profit_df['high'] - profit_df['low']
     profit_df = profit_df.loc[profit_df.groupby(['ticker'])['profit'].idxmax()]
@@ -56,7 +57,8 @@ def calculate_biggest_loser(delta_df):
     calculate which security had the most losing days
     """
     delta_df['num_days'] = (delta_df['close'] < delta_df['open']).astype(int)
-    delta_df = delta_df.groupby(['ticker'],
-                                as_index=False)['num_days'].sum().max()
-    return delta_df[['ticker', 'num_days']]
+    delta_df = delta_df.groupby(['ticker'], as_index=False)['num_days'].sum()
+    max_losing_days = max(delta_df['num_days'])
+    return delta_df.loc[delta_df['num_days'] == max_losing_days
+                        ][['ticker', 'num_days']]
 
