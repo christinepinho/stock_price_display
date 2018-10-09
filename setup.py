@@ -7,5 +7,5 @@ setup(
     url='https://github.com/christinepinho/stock_price_display',
     author='Christine Pinho',
     author_email='christineapinho@gmail.com',
-    install_requires=['quandl', 'argparse'],
+    install_requires=['pandas', 'quandl', 'argparse'],
     packages=['stock_price_display'])
