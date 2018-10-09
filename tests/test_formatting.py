@@ -77,6 +77,6 @@ def test_format_busy_day(today, tomorrow):
 
 
 def test_format_biggest_loser():
-    test_data = pd.Series(['MSFT', 56], ['ticker', 'num_days'])
+    test_data = pd.DataFrame({'ticker': ['COF'], 'num_days': 62})
     formatted_dict = f.format_biggest_loser(test_data)
-    assert formatted_dict == {'MSFT': {'num_days': 56}}
+    assert formatted_dict == {'COF': {'num_days': 62}}

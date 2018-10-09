@@ -65,7 +65,6 @@ def test_biggest_loser_output_correct(price_data):
     """Test biggest loser against manual calculation"""
     delta_df = price_data
     res = c.calculate_biggest_loser(delta_df)
-
     highest_loss = ('TBD', 0)
     for security in ['COF', 'GOOGL', 'MSFT']:
         check_df = delta_df.loc[delta_df['ticker'] == security]
@@ -74,5 +73,6 @@ def test_biggest_loser_output_correct(price_data):
         loss = len(check_df)
         if loss > highest_loss[1]:
             highest_loss = (security, loss)
-    assert all(res == pd.Series(highest_loss, ['ticker', 'num_days']))
+    assert all(res == pd.DataFrame({'ticker': highest_loss[0],
+                                    'num_days': highest_loss[1]}, index=[0]))
 

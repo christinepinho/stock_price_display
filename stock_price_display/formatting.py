@@ -74,9 +74,13 @@ def format_busy_day(volume_df):
     return res
 
 
-def format_biggest_loser(delta):
+def format_biggest_loser(delta_df):
     """Output biggest loser data in the following format:
     {ticker_name: {'num_days': num_days}
     """
-    res = {delta['ticker']: {'num_days': delta['num_days']}}
+    res = {}
+    for ticker in delta_df['ticker'].unique():
+        res[ticker] = {
+            'num_days': (delta_df.loc[delta_df['ticker'] == ticker]
+                         ['num_days'].unique().item())}
     return res

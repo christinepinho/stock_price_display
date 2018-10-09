@@ -35,7 +35,7 @@ def main():
     if args.biggest_loser:
         delta = c.calculate_biggest_loser(prices)
         delta = f.format_biggest_loser(delta)
-        print("The security with the most days of loss are: {} \n"
+        print("The security with the most days of loss is: {} \n"
               .format(json.dumps(delta, indent=4)))
 
 
