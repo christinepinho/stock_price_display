@@ -78,5 +78,5 @@ def format_biggest_loser(delta):
     """Output biggest loser data in the following format:
     {ticker_name: {'num_days': num_days}
     """
-    res = {delta.ticker: {'num_days': delta.num_days}}
+    res = {delta['ticker']: {'num_days': delta['num_days']}}
     return res

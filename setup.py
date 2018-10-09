@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     version='0.0.1',
@@ -8,4 +8,4 @@ setup(
     author='Christine Pinho',
     author_email='christineapinho@gmail.com',
     install_requires=['pandas', 'quandl', 'argparse'],
-    packages=['stock_price_display'])
+    packages=find_packages())
