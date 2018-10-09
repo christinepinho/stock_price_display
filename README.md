@@ -14,8 +14,9 @@ for that security, and
 
 ## INSTALLATION ##
 
-To install this program, simply run ```git clone git+giturl```.  Then cd to the root of where this 
-directory was cloned and type ```pip install .```  This way, all dependencies will also be installed.
+To install this program, simply run ```git clone git+https://github.com/christinepinho/stock_price_display```.
+Then cd to the root of where this  directory was cloned and type ```pip install .```  
+This way, all dependencies will also be installed.
 
 Please note that this program is written in Python 3, and must be run in a Python 3 environment.
 
