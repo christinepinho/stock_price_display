@@ -23,7 +23,7 @@ def format_average_open_close(open_close_df):
         [{'month': YYYY-MM, 'average_open': $xx.xx, 'average_close': $xx.xx},
          'month': YYYY-MM, 'average_open': $xx.xx, 'average_close': $xx.xx}]}
     """
-    open_close_df['month'] = open_close_df['month'].astype(str)
+    open_close_df['month'] = open_close_df['month'].map('{:02d}'.format)
     open_close_df['month'] = "2017-" + open_close_df['month']
     open_close_df = _format_data_to_currency(open_close_df, ['open', 'close'])
     open_close_df.sort_values(['ticker', 'month', 'open', 'close'],
