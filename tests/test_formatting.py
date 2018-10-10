@@ -41,10 +41,10 @@ def test_format_average_open_close():
                               'open': [823, 828],
                               'close': [824, 827]})
     formatted_dict = f.format_average_open_close(test_data)
-    assert formatted_dict == {'GOOGL': [{'month': '2017-1',
+    assert formatted_dict == {'GOOGL': [{'month': '2017-01',
                                          'average_open': '$823.00',
                                          'average_close': '$824.00'},
-                                        {'month': '2017-2',
+                                        {'month': '2017-02',
                                          'average_open': '$828.00',
                                          'average_close': '$827.00'}]}
 

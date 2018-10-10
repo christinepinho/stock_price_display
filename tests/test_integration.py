@@ -34,15 +34,41 @@ def test_avg_open_close_returned():
 
 
 def test_max_daily_profit_returned():
-    pass
+    res = main(cli_args=("--securities COF GOOGL MSFT --max-daily-profit "
+                         "--start-date-range 2017-01-01 "
+                         "--end-date-range 2017-03-01").split())
+    assert len(res) == 2  # results must contain avg open/close + max-profit
+    assert sorted(list(res[1].keys())) == ['COF', 'GOOGL', 'MSFT']
+    for date_profit_dict in res[1]['COF']:
+        assert list(date_profit_dict.keys()) == ['date', 'profit']
+        assert len(date_profit_dict['profit']) == 5  # ensure form is $x.xx
+        assert len(date_profit_dict['date']) == 10  # ensure form is YYY-MM-DD
 
 
 def test_busy_day_returned():
-    pass
+    res = main(cli_args=("--securities COF GOOGL MSFT --busy-day "
+                         "--start-date-range 2017-01-01 "
+                         "--end-date-range 2017-03-01").split())
+    assert len(res) == 2  # results must contain avg open/close + busy-day
+    assert sorted(list(res[1].keys())) == ['COF', 'GOOGL', 'MSFT']
+    for k in res[1]['COF'].keys():
+        assert k.startswith('avg_volume_')
+    # there will be lots of {'date': date, 'month': month} dicts in a list.
+    # pull any one and make sure it follows the correct formatting
+    assert sorted(res[1]['COF'][k][0].keys()) == ['date', 'volume']
+    assert len(res[1]['COF'][k][0]['date']) == 10  # ensure form is YYYY_MM-DD
+    assert type(res[1]['COF'][k][0]['volume']) == float
 
 
 def test_biggest_loser_returned():
-    pass
+    res = main(cli_args=("--securities COF GOOGL MSFT --biggest-loser "
+                         "--start-date-range 2017-01-01 "
+                         "--end-date-range 2017-06-31").split())
+    assert len(res) == 2  # results must contain avg open/close + biggest-loser
+    assert len(res[1].keys()) == 1  # there can only be one biggest loser
+    # Because I know COF was the biggest loser in this time period, ill use it
+    assert list(res[1]['COF'].keys()) == ['num_days']
+    assert type(res[1]['COF']['num_days']) == int
 
 
 @pytest.mark.parametrize('analyses', permutations(['--max-daily-profit',

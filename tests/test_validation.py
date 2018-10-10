@@ -21,7 +21,7 @@ def test_validates_lower_and_upper_case_securities(securities):
 
 def test_catches_duplicate_securities():
     res = v.validate_securities(['googl', 'googl', 'msft'])
-    assert res == ['GOOGL', 'MSFT']
+    assert sorted(res) == ['GOOGL', 'MSFT']
 
 
 @pytest.mark.parametrize(
